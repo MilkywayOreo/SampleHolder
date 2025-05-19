@@ -181,7 +181,7 @@ head_width = 11;
 module screw() {
     union() {
         cylinder(h = head_len + 0.6, d = head_width);
-        rotate([180]) import("M6_ext_thread_len5.stl");
+        rotate([180]) import("lib/M6_ext_thread_len5.stl");
     }
 }
 
