@@ -1,6 +1,7 @@
 # Sample Holder with magnetic clamps
-CAD files for a sample holder that can be mounted to a verticaly mounted Thorlabs PT1/M mm-plate (https://www.thorlabs.com/thorproduct.cfm?partnumber=PT1/M).
-It comes with magnetic clamps.
+CAD files for a sample holder compatible with Thorlabs PT1/M mm-plate.
+Features magnetic clamps for holding coverslips and slides
+
 
 ## License & Attribution
 
