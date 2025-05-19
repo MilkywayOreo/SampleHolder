@@ -1,5 +1,5 @@
 # Microscope sample holder
-CAD files for a sample holder compatible with Thorlabs PT1/M mm-plate.
+CAD files for a sample holder with bottom optical access, compatible with Thorlabs PT1/M mm-plate.
 Features magnetic clamps for holding slides.
 
 
