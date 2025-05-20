@@ -176,11 +176,11 @@ module triangular_support(){
 // M6 screw length: total:18mm, μm-plate:7mm, head=6mm, ~> 5mm thread ~> y=5/11
 head_len = 6;
 thread = 5;
-head_width = 11; 
+counterbore = 11; 
 
 module screw() {
     union() {
-        cylinder(h = head_len + 0.6, d = head_width);
+        cylinder(h = head_len + 0.6, d = counterbore);
         rotate([180]) import("lib/M6_ext_thread_len5.stl");
     }
 }
@@ -211,7 +211,7 @@ module mount_pattern(){
                     
                     // full hole
                     if (x == 0 && (z == -1 || z == 1))
-                        cylinder(h = tk_Zplate, d = head_width, center=true);
+                        cylinder(h = tk_Zplate, d = counterbore, center=true);
                 }
             }
 }
