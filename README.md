@@ -1,6 +1,6 @@
-# Sample Holder with magnetic clamps
-CAD files for a sample holder compatible with Thorlabs PT1/M mm-plate.
-Features magnetic clamps for holding coverslips and slides
+# sample holder
+CAD/SCAD files for a microscope sample holder with bottom optical access. Compatible with Thorlabs PT1/M mm-plate.
+Features magnetic clamps for holding slides.
 
 
 ## License & Attribution
