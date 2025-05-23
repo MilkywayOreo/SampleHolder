@@ -19,7 +19,7 @@
 
 //--------------------------------paramters--------------------------------//
 
-$fn=50;
+$fn=60;
 
 tk_support=5;                    // thickness of support triangle
 tk_base = 2.5; 
