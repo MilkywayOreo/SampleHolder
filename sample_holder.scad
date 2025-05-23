@@ -2,8 +2,8 @@
  * Sample Holder for Microscope
  * -------------------------------------
  * Author: Max Hirsch - hirscher@hu-berlin.de
- * Version: 1.0
  * Date: May 2025
+ * Version: 1.0
  *
  * Description:
  * This OpenSCAD model creates a microscope sample holder with bottom optical access. Compatible with Thorlabs PT1/M mm-plate. Features magnetic clamps for holding slides.
@@ -53,6 +53,8 @@ depth = obj_align_y + 15;
 //--------------------------------main geometry--------------------------------//
 
 
+
+
 // xy-base
 difference(){
     cube([width, depth, tk_base]);
@@ -60,10 +62,10 @@ difference(){
     translate([width/2, obj_align_y, -0.001])
         base_cut();
     
-    // coverslide
+    // coverslide example
     x=60; y=24; z=1.1;
-    translate([width/2-x/2, obj_align_y - center_hole/2 -2, tk_base-z/2])
-        color("red") cube([x,y,z]);
+//    translate([width/2-x/2, obj_align_y - center_hole/2 -2, tk_base-z/2])
+//        color("red") cube([x,y,z]);
        
     // right edge and back stop
     translate([(width-x-1)/2, obj_align_y - center_hole/2 -2, tk_base-1/2])    
@@ -78,12 +80,7 @@ difference(){
             // mark on top
             translate([0, 0, tk_base-1]) cylinder(h=1, r=1);
         }
-    }
-    
-    // engraving
-    translate([width/2 + (3/5*center_hole + 4.6),obj_align_y,tk_base])
-        rotate([0,0,180])
-            text("60x24", size=1, halign="center", valign="center", font="Liberation Sans:style=Bold");  
+    } 
 };
 
 
@@ -186,7 +183,8 @@ counterbore = 11;
 module screw() {
     union() {
         cylinder(h = head_len + 0.6, d = counterbore);
-        rotate([180]) import("lib/M6_ext_thread_len5.stl");
+        rotate([180])  // scale([1.04,1.04,1]) import("lib/M6_ext_thread_len5.stl");
+        cylinder(h=5, d=6.2);   // 2mm clearence
     }
 }
 
