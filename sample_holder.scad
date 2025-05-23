@@ -3,7 +3,10 @@
  * -------------------------------------
  * Author: Max Hirsch - hirscher@hu-berlin.de
  * Date: May 2025
- * Version: 1.0
+ * Version: 1.1
+ - remove vertical support, 
+ - remove 1mm from backstop and right edge section
+ - increased width from 85 to 100 ~> center hole also grows with width
  *
  * Description:
  * This OpenSCAD model creates a microscope sample holder with bottom optical access. Compatible with Thorlabs PT1/M mm-plate. Features magnetic clamps for holding slides.
@@ -23,13 +26,13 @@ tk_base = 2.5;
 tk_Zplate=11;                    // thickness vertical plate
 
 height = 32.5;                       // 12.5mm steps
-width = 85 - 2*tk_support;  
+width = 95 - 2*tk_support;  
 
 center_hole = 0.35*width; 
 side_hole=3;
-                    
-obj_align_y = 37.5;
-depth = obj_align_y + 15;
+      
+after_cut_depth = 12.5;      
+depth = 60 - after_cut_depth;      
 
 //                                    range of motion
 //    _______________________________    y-mm-plate
@@ -52,30 +55,30 @@ depth = obj_align_y + 15;
 
 //--------------------------------main geometry--------------------------------//
 
-
+mag_rad = 4;
 
 
 // xy-base
 difference(){
     cube([width, depth, tk_base]);
     
-    translate([width/2, obj_align_y, -0.001])
+    translate([width/2,  after_cut_depth +center_hole/2 +2, -0.001])
         base_cut();
     
     // coverslide example
     x=60; y=24; z=1.1;
-//    translate([width/2-x/2, obj_align_y - center_hole/2 -2, tk_base-z/2])
-//        color("red") cube([x,y,z]);
+    translate([(width-x)/2,  after_cut_depth, tk_base-z/2])
+        color("red") cube([x,y,z]);
        
     // right edge and back stop
-    translate([(width-x-1)/2, obj_align_y - center_hole/2 -2, tk_base-1/2])    
-        cube([x+1,40,1]);
+    translate([(width-x)/2,  after_cut_depth, tk_base-1/2])    
+        cube([x,40,1]);
      
     // magnets
     for(x=[-1,1]) {
-        translate([width/2 + x*(3/5*center_hole + 4.6), obj_align_y-2.3, -0.01]) {
+        translate([width/2 + x*(3/5*center_hole + mag_rad+0.5),  after_cut_depth+center_hole/2 - mag_rad, -0.01]) {
             // magnet pocket underneath
-            cylinder(h=0.7, r1=4.6, r2=4.1);
+            cylinder(h=0.7, r1=mag_rad+0.5, r2=mag_rad);
 
             // mark on top
             translate([0, 0, tk_base-1]) cylinder(h=1, r=1);
@@ -98,15 +101,15 @@ difference() {
 }
 
 
-// vertical triangluar support
-translate([width, tk_Zplate, tk_base])
-    rotate([0, -90, 0])
-        linear_extrude(height = width, scale=1)
-            polygon(points=[
-                [0, 0],
-                [4, 0],
-                [0, obj_align_y - tk_Zplate - center_hole/2 - 2]
-                ]);
+//// vertical triangluar support
+//translate([width, tk_Zplate, tk_base])
+//    rotate([0, -90, 0])
+//        linear_extrude(height = width, scale=1)
+//            polygon(points=[
+//                [0, 0],
+//                [4, 0],
+//                [0,  after_cut_depth - tk_Zplate - center_hole/2 - 2]
+//                ]);
 
 
 
